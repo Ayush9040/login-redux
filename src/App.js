@@ -9,7 +9,8 @@ import { Provider } from 'react-redux';
 import Error from './Error';
 import Admin from './Admin';
 import User from './User';
-
+import EditUser from './EditUser';
+import AddDetails from './AddDetails';
 
 
 const App = () => {
@@ -36,12 +37,20 @@ export const appRouter = createBrowserRouter([
     element: <Login />
   },
   {
-    path: '/admin',
+    path: `/admin`,
     element: <Admin />
   },
   {
-    path: '/user',
+    path: `/user/:user_name`,
     element: <User />
+  },
+  {
+    path: '/user/edit-user/:user_id',
+    element: <EditUser />
+  },
+  {
+    path: '/user/add-details/:user_id',
+    element: <AddDetails />
   }
 ]);
 

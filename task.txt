@@ -1,0 +1,5 @@
+Admin page
+
+Q. Create a List in form of table it should contain all the existing user whose type is user and there should be an icon that should redirect to user edit page which contains mark details of the user.
+
+Q. User page should contain a details about user.

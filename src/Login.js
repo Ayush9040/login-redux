@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from './slices/userSlice';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ const Login = () => {
     setEmail('');
     setPassword('');
   };
+
+  console.log(email)
 
   return (
     <div className='container'>
@@ -28,7 +31,7 @@ const Login = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleLogin}>Login</button>
+     <button onClick={handleLogin}> <Link to={`/user/${email}`}>Login</Link></button>
     </div>
   );
 };

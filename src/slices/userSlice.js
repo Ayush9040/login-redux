@@ -11,7 +11,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     registerUser: (state, action) => {
-      state.users.push(action.payload);
+      const users = JSON.parse(localStorage.getItem('users'));
+      const obj={
+        id: users && users.length ? users.length+1:1,
+        ...action.payload
+      }
+      if(users) state.users = [...users, obj];
+      else state.users.push(obj);
       localStorage.setItem('users', JSON.stringify(state.users));
     },
     loginUser: (state, action) => {
@@ -26,9 +32,12 @@ const userSlice = createSlice({
 
       if (user?.userType === 'admin') {
         window.location.href = 'http://localhost:3000/admin';
+        localStorage.setItem('loggedInUserType', 'admin')
         console.log(user);
       } else if(user?.userType === 'user'){
         window.location.href = 'http://localhost:3000/user';
+        localStorage.setItem('loggedInUserType', 'student')
+        
       }else{
         alert('login failed');
       }
@@ -38,3 +47,4 @@ const userSlice = createSlice({
 
 export const { registerUser, loginUser } = userSlice.actions;
 export default userSlice.reducer;
+
